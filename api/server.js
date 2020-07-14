@@ -1,5 +1,5 @@
 const express = require("express");
-//const helmet = require("helmet");
+const helmet = require("helmet");
 
 const carsRouter = require("../cars/cars-router.js");
 
@@ -8,7 +8,7 @@ const db = require("../data/connection.js");
 
 const server = express();
 
-//server.use(helmet());
+server.use(helmet());
 server.use(express.json());
 
 server.use("/api/cars", carsRouter);
