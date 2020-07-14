@@ -3,14 +3,14 @@
 module.exports = {
 
   development: {
-    client: 'sqlite3',
+    client: "sqlite3",
     connection: {
-      filename: './data/car-dealer.db3' //configure knex to connect to the database
+      filename: "./data/car-dealer.db3" //configure knex to connect to the database
     },
     //need for Sqlite
     useNullAsDefault: true,
     migrations: {
-        directory: './data/migrations'
+        directory: "./data/migrations"
     }
 
   }
