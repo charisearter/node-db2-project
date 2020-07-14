@@ -5,7 +5,7 @@ const db = require("../data/connection.js");
 const router = express.Router();
 
 //CREATE - POST
-router.post('/', (req, res) => {
+router.post('/', validateCar, (req, res) => {
   const newCar = req.body;
   db("cars")
   .insert(newCar, "id")
@@ -83,5 +83,21 @@ router.delete('/:id', (req, res) => {
   })
 });
 
+//custom middleware
+
+function validateCar(req, res, next) {
+  const body = req.body;
+  const make = req.body.make;
+  const model = req.body.model;
+  const vin = req.body.vin;
+  const mileage = req.body.mileage;
+
+  !body ? res.status(400).json({ message: "Missing car data: make, model, VIN, and mileage. These are all required." }):
+  !make ? res.status(400).json({ message: "missing car make" }):
+  !model ? res.status(400).json({ message: "missing car model" }):
+  !vin ? res.status(400).json({ message: "missing car VIN" }):
+  !mileage ? res.status(400).json({ message: "missing car mileage" }):
+  next();
+}
 
 module.exports = router;
