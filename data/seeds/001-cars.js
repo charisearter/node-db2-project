@@ -1,6 +1,7 @@
 
 exports.seed = function(knex) {
   // Deletes ALL existing entries
+  //truncate instead of delete because truncate will reset the primary key each time
   return knex('cars').truncate()
     .then(function () {
       // Inserts seed entries
